@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Hanken Grotesk", serif;
+}
+body {
+  /* @apply bg-ter; */
+}
+
+.christmas-img {
+  /* clip-path: inset(top right bottom left); */
+  /* clip-path: inset(20% 40% 20% 40%); */
+  clip-path: inset(50% 50% 50% 50%);
+  /* clip-path: inset(0% 0% 0% 0%); */
+}
+
+.clip-img {
+  clip-path: inset(50% 50% 50% 50%);
+}
