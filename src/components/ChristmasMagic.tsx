@@ -38,18 +38,6 @@ export default function ChristmasMagic() {
         const titleEl = qEl(".magic-title");
         const descEl = qEl(".magic-desc");
 
-        const titleTl = gsap.timeline({ paused: true });
-
-        titleTl
-          .to(titleEl, {
-            translateY: 0,
-            stagger: 0.05,
-          })
-          .to(descEl, {
-            translateY: 0,
-            stagger: 0.01,
-          });
-
         if (i === 0) {
           tl.to(titleEl, {
             translateY: 0,
@@ -62,20 +50,6 @@ export default function ChristmasMagic() {
             .addLabel(`magic-${i}`);
           return;
         }
-
-        // if (i === magicalChristmas.length - 1) {
-        //   tl.fromTo(
-        //     el,
-        //     {
-        //       clipPath: "inset(50% 50% 50% 50%)",
-        //     },
-        //     {
-        //       clipPath: "inset(0% 0% 0% 0%)",
-        //       duration: 1,
-        //     }
-        //   );
-        //   return;
-        // }
 
         tl.fromTo(
           el,
@@ -97,88 +71,6 @@ export default function ChristmasMagic() {
           })
           .addLabel(`magic-${i}`);
       });
-      // magicalChristmas.forEach((el, i) => {
-      //   const qEl = gsap.utils.selector(el);
-      //   const titleEl = qEl(".magic-title");
-      //   const descEl = qEl(".magic-desc");
-
-      //   if (i === 0) {
-      //     tl.to(titleEl, {
-      //       translateY: 0,
-      //       stagger: 0.2,
-      //     })
-      //       .to(descEl, {
-      //         translateY: 0,
-      //         stagger: 0.2,
-      //       })
-      //       .to(titleEl, {
-      //         opacity: 0,
-      //       })
-      //       .to(
-      //         descEl,
-      //         {
-      //           translateY: "100%",
-      //           stagger: 0.2,
-      //         },
-      //         "<"
-      //       );
-      //     return;
-      //   }
-
-      //   if (i === magicalChristmas.length - 1) {
-      //     tl.fromTo(
-      //       el,
-      //       {
-      //         clipPath: "inset(50% 50% 50% 50%)",
-      //       },
-      //       {
-      //         clipPath: "inset(0% 0% 0% 0%)",
-      //       },
-      //       "<"
-      //     )
-      //       .to(titleEl, {
-      //         translateY: 0,
-      //         stagger: 0.2,
-      //       })
-      //       .to(descEl, {
-      //         translateY: 0,
-      //         stagger: 0.2,
-      //       });
-      //     return;
-      //   }
-
-      //   tl.fromTo(
-      //     el,
-      //     {
-      //       clipPath: "inset(50% 50% 50% 50%)",
-      //     },
-      //     {
-      //       clipPath: "inset(0% 0% 0% 0%)",
-      //     },
-      //     "<"
-      //   )
-      //     .to(titleEl, {
-      //       translateY: 0,
-      //       stagger: 0.2,
-      //     })
-      //     .to(descEl, {
-      //       translateY: 0,
-      //       stagger: 0.2,
-      //     })
-      //     .to(titleEl, {
-      //       translateY: "100%",
-      //       stagger: 0.2,
-      //     })
-      //     .to(
-      //       descEl,
-      //       {
-      //         translateY: "100%",
-      //         stagger: 0.2,
-      //       },
-      //       "<"
-      //     );
-      // });
-
       // title
       magicHeaderTitleContainer.forEach((el) => {
         const magicHeaderTitle = gsap.utils.selector(el)(".magic-header-title");
