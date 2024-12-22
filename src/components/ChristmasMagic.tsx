@@ -26,6 +26,10 @@ export default function ChristmasMagic() {
           scrub: true,
           // markers: true,
           pin: true,
+          snap: {
+            snapTo: "labels",
+            duration: { min: 0.5, max: 1 },
+          },
         },
       });
 
@@ -34,49 +38,44 @@ export default function ChristmasMagic() {
         const titleEl = qEl(".magic-title");
         const descEl = qEl(".magic-desc");
 
+        const titleTl = gsap.timeline({ paused: true });
+
+        titleTl
+          .to(titleEl, {
+            translateY: 0,
+            stagger: 0.05,
+          })
+          .to(descEl, {
+            translateY: 0,
+            stagger: 0.01,
+          });
+
         if (i === 0) {
           tl.to(titleEl, {
             translateY: 0,
-            stagger: 0.2,
+            stagger: 0.05,
           })
             .to(descEl, {
               translateY: 0,
-              stagger: 0.2,
+              stagger: 0.01,
             })
-            .to(titleEl, {
-              opacity: 0,
-            })
-            .to(
-              descEl,
-              {
-                translateY: "100%",
-                stagger: 0.2,
-              },
-              "<"
-            );
+            .addLabel(`magic-${i}`);
           return;
         }
 
-        if (i === magicalChristmas.length - 1) {
-          tl.fromTo(
-            el,
-            {
-              clipPath: "inset(50% 50% 50% 50%)",
-            },
-            {
-              clipPath: "inset(0% 0% 0% 0%)",
-            },
-            "<"
-          )
-            .to(titleEl, {
-              translateY: 0,
-            })
-            .to(descEl, {
-              translateY: 0,
-              stagger: 0.2,
-            });
-          return;
-        }
+        // if (i === magicalChristmas.length - 1) {
+        //   tl.fromTo(
+        //     el,
+        //     {
+        //       clipPath: "inset(50% 50% 50% 50%)",
+        //     },
+        //     {
+        //       clipPath: "inset(0% 0% 0% 0%)",
+        //       duration: 1,
+        //     }
+        //   );
+        //   return;
+        // }
 
         tl.fromTo(
           el,
@@ -85,29 +84,102 @@ export default function ChristmasMagic() {
           },
           {
             clipPath: "inset(0% 0% 0% 0%)",
-          },
-          "<"
+            duration: 1,
+          }
         )
           .to(titleEl, {
             translateY: 0,
+            stagger: 0.05,
           })
           .to(descEl, {
             translateY: 0,
-            stagger: 0.2,
+            stagger: 0.01,
           })
-          .to(titleEl, {
-            translateY: "100%",
-          })
-          .to(
-            descEl,
-            {
-              translateY: "100%",
-              stagger: 0.2,
-            },
-            "<"
-          );
+          .addLabel(`magic-${i}`);
       });
+      // magicalChristmas.forEach((el, i) => {
+      //   const qEl = gsap.utils.selector(el);
+      //   const titleEl = qEl(".magic-title");
+      //   const descEl = qEl(".magic-desc");
 
+      //   if (i === 0) {
+      //     tl.to(titleEl, {
+      //       translateY: 0,
+      //       stagger: 0.2,
+      //     })
+      //       .to(descEl, {
+      //         translateY: 0,
+      //         stagger: 0.2,
+      //       })
+      //       .to(titleEl, {
+      //         opacity: 0,
+      //       })
+      //       .to(
+      //         descEl,
+      //         {
+      //           translateY: "100%",
+      //           stagger: 0.2,
+      //         },
+      //         "<"
+      //       );
+      //     return;
+      //   }
+
+      //   if (i === magicalChristmas.length - 1) {
+      //     tl.fromTo(
+      //       el,
+      //       {
+      //         clipPath: "inset(50% 50% 50% 50%)",
+      //       },
+      //       {
+      //         clipPath: "inset(0% 0% 0% 0%)",
+      //       },
+      //       "<"
+      //     )
+      //       .to(titleEl, {
+      //         translateY: 0,
+      //         stagger: 0.2,
+      //       })
+      //       .to(descEl, {
+      //         translateY: 0,
+      //         stagger: 0.2,
+      //       });
+      //     return;
+      //   }
+
+      //   tl.fromTo(
+      //     el,
+      //     {
+      //       clipPath: "inset(50% 50% 50% 50%)",
+      //     },
+      //     {
+      //       clipPath: "inset(0% 0% 0% 0%)",
+      //     },
+      //     "<"
+      //   )
+      //     .to(titleEl, {
+      //       translateY: 0,
+      //       stagger: 0.2,
+      //     })
+      //     .to(descEl, {
+      //       translateY: 0,
+      //       stagger: 0.2,
+      //     })
+      //     .to(titleEl, {
+      //       translateY: "100%",
+      //       stagger: 0.2,
+      //     })
+      //     .to(
+      //       descEl,
+      //       {
+      //         translateY: "100%",
+      //         stagger: 0.2,
+      //       },
+      //       "<"
+      //     );
+      // });
+
+      // title
       magicHeaderTitleContainer.forEach((el) => {
         const magicHeaderTitle = gsap.utils.selector(el)(".magic-header-title");
 
@@ -157,6 +229,7 @@ export default function ChristmasMagic() {
                     text: title,
                     containerClass: "overflow-hidden",
                     className: "translate-y-full magic-title",
+                    isWord: false,
                   })}
                 </h3>
                 <p className="text-white">
@@ -164,6 +237,7 @@ export default function ChristmasMagic() {
                     text: description,
                     containerClass: "overflow-hidden",
                     className: " translate-y-full magic-desc",
+                    isWord: false,
                   })}
                 </p>
               </div>

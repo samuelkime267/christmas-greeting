@@ -25,12 +25,20 @@ export default function splitText({
   className = "",
 }: splitTextProps) {
   const chars = splitString(text, isWord);
-  const els: React.DetailedReactHTMLElement<
-    React.HTMLAttributes<HTMLElement>,
-    HTMLElement
-  >[] = [];
+
+  const els: (
+    | React.DetailedReactHTMLElement<
+        React.HTMLAttributes<HTMLElement>,
+        HTMLElement
+      >
+    | string
+  )[] = [];
 
   chars.forEach((char, i) => {
+    if (!isWord && char === " ") {
+      els.push(" ");
+      return;
+    }
     els.push(
       createElement(
         element,
@@ -44,13 +52,10 @@ export default function splitText({
     );
 
     if (isWord) {
-      els.push(
-        createElement(element, { className: containerClass, key: i }, " ")
-      );
+      els.push(" ");
+      return;
     }
   });
-
-  console.log(els);
 
   return els;
 }
