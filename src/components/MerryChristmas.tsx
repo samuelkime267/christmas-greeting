@@ -3,7 +3,11 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { useEffect, useRef } from "react";
 
-export default function MerryChristmas() {
+type MerryChristmasProps = {
+  isLoaded: boolean;
+};
+
+export default function MerryChristmas({ isLoaded }: MerryChristmasProps) {
   gsap.registerPlugin(ScrollTrigger);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -52,12 +56,29 @@ export default function MerryChristmas() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!sectionRef.current || !isLoaded) return;
+
+    const ctx = gsap.context(() => {
+      const q = gsap.utils.selector(sectionRef.current);
+      const merryChristmas = q(".merry-christmas");
+
+      gsap.to(merryChristmas, { translateY: 0 });
+    });
+
+    return () => {
+      ctx.revert();
+    };
+  }, [isLoaded]);
+
   return (
     <section ref={sectionRef} className="relative w-full h-screen">
       <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center  p-4 md:p-8">
-        <h1 className="text-4xl md:text-5xl font-bold uppercase text-center">
-          Merry Christmas
-        </h1>
+        <div className="overflow-hidden">
+          <h1 className="text-4xl md:text-5xl font-bold uppercase text-center translate-y-full merry-christmas">
+            Merry Christmas
+          </h1>
+        </div>
       </div>
       <div className="absolute top-0 left-0 w-full h-full christmas-img">
         <img
