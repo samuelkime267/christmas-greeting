@@ -129,7 +129,7 @@ export default function ChristmasMagic() {
                     text: description,
                     containerClass: "overflow-hidden",
                     className: " translate-y-full magic-desc",
-                    isWord: false,
+                    // isWord: false,
                   })}
                 </p>
               </div>

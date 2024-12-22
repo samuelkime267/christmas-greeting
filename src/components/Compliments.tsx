@@ -1,17 +1,9 @@
-import splitText from "../utils/splitText";
-
 export default function Compliments() {
   return (
     <footer className="p-4 md:p-8">
-      <p className="">
-        {splitText({
-          text: "testing if this actually works",
-          className: "text-pink-600",
-          isWord: false,
-        })}
+      <p className="uppercase font-bold text-[8.5vw] md:text-[8.8vw] lg:text-[9vw] text-center">
+        Enjoy your holiday
       </p>
-      <p className="">Enjoy your holiday</p>
-      <p>see you next year</p>
     </footer>
   );
 }
