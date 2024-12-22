@@ -24,11 +24,11 @@ export default function Loader({ setIsLoaded }: LoaderProps) {
     };
 
     // Listen for the window load event
-    window.addEventListener("load", handleLoad);
+    const timeout = setTimeout(handleLoad, 5000);
 
     // Cleanup event listener on unmount
     return () => {
-      window.removeEventListener("load", handleLoad);
+      clearTimeout(timeout);
     };
   }, [setIsLoaded]);
 
