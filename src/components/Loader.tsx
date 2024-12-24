@@ -24,7 +24,7 @@ export default function Loader({ setIsLoaded }: LoaderProps) {
     };
 
     // Listen for the window load event
-    const timeout = setTimeout(handleLoad, 5000);
+    const timeout = setTimeout(handleLoad, 2500);
 
     // Cleanup event listener on unmount
     return () => {
